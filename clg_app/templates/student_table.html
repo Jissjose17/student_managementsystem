@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+  a{
+  font-size: large;
+}
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'eventpage' %}">Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contactpage' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutpage' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'registerpage' %}">Student registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'show_students' %}">Student details</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <br>
+   <section>
+    <table class="table">
+      <thead>
+          <tr>
+              <th>First Name</th>
+              <th>Student Number</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for student in students %}
+              <tr>
+                  <td><a href="{% url 'profile' student.id %}">{{ student.studentfname }}</a></td>
+                  <td>{{ student.studentnumber }}</td>
+                  <td>{{ student.studentemail }}</td>
+                  <td>{{ student.studentcourse }}</td>
+                  <td>
+                    <a href="{% url 'editpage' student.id %}">Edit</a>
+                    <a href="{% url 'deletefunction' student.id %}">Delete</a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+   </section>
+</body>
+</html>

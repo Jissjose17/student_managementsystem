@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load crispy_forms_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+  a{
+  font-size: large;
+}
+body {
+  background: #76b852; /* fallback for old browsers */
+  background: rgb(141,194,111);
+  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+</style>
+<body style="text-align:center;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'eventpage' %}">Event</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contactpage' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'aboutpage' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'registerpage' %}">Student registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'show_students' %}">Student details</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</body>
+<section class="form">
+    <h1>Student registration</h1>
+    <form action="{% url 'registerfunction' %}" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <label for="">First Name</label>
+        <input type="text" name="fname">
+        <br>
+        <label for="">Last Name</label>
+        <input type="text" name="lname">
+        <br>
+        <label for="">Phone Number</label>
+        <input type="tel" name="number">
+        <br>
+        <label for="">Email</label>
+        <input type="email" name="email">
+        <br>
+        <div class="form-wrapper">
+          <select name="gender" id="" class="form-control">
+            <option value="" disabled selected>Gender</option>
+            <option value="male">Male</option>
+            <option value="femal">Female</option>
+            <option value="other">Other</option>
+          </select>
+        <br>
+        <label for="">Date of birth</label>
+        <input type="text" name="date" value="2018-07-22">
+        <br>
+        <label for="">Username</label>
+        <input type="text" name="username">
+        <br>
+        <label for="">Password</label>
+        <input type="password" name="password">
+        <br>
+        <label for="">address</label>
+        <input type="text" name="address">
+        <br>
+        <div class="form-wrapper">
+          <select name="course" id="" class="form-control">
+            <option value="" disabled selected>Course</option>
+            <option value="BA">BA</option>
+            <option value="B.COM">B.COM</option>
+            <option value="B.TECH">BTECH</option>
+          </select>
+        <br>
+        <label for="">Image</label>
+        <input type="file" name="image" accept="image/*">
+        <br>
+        <button type="submit">Submit</button>
+        
+    </form>
+</section>
+</html>
